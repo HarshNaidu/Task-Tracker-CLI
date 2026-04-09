@@ -33,30 +33,36 @@ else:
         print("  task-cli list - List all tasks")
         print("  task-cli list <status> - List tasks by status (todo, in-progress, done)")
 
-    elif sys.argv[1] == "add":
-        task_description = " ".join(sys.argv[2:])
+    elif command == "add":
+        task_description = " ".join(sys.argv[2:]).strip().strip('"').strip("'")
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        add_task(task_description, timestamp)  
+        if not task_description.strip():
+            print("Task description cannot be empty.")
+        else:
+            add_task(task_description, timestamp)  
 
-    elif sys.argv[1] == "update":
+    elif command == "update":
         task_id = int(sys.argv[2])
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        new_description = " ".join(sys.argv[3:])
-        update_task(task_id, new_description, timestamp)  
+        new_description = " ".join(sys.argv[3:]).strip().strip('"').strip("'")
+        if not new_description.strip():
+            print("Task description cannot be empty.")
+        else:
+            update_task(task_id, new_description, timestamp)  
 
-    elif sys.argv[1] == "delete":
+    elif command == "delete":
         task_id = int(sys.argv[2])
         delete_task(task_id)
 
-    elif sys.argv[1] == "mark-in-progress":
+    elif command == "mark-in-progress":
         task_id = int(sys.argv[2])
         mark_in_progress(task_id)
 
-    elif sys.argv[1] == "mark-done":
+    elif command == "mark-done":
         task_id = int(sys.argv[2])
         mark_done(task_id)
 
-    elif sys.argv[1] == "list":
+    elif command == "list":
             if len(sys.argv) == 2:
                 list_tasks()
             else:

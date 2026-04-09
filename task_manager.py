@@ -50,36 +50,62 @@ def delete_task(task_id):
 
 def mark_in_progress(task_id):
     tasks = load_tasks()
+    found = False
+    
     for task in tasks:
         if task["id"] == task_id:
             task["status"] = "in-progress"
             save_tasks(tasks)
             print(f"Task {task_id} marked as in progress!")
-        else:
-            print(f"Task with ID {task_id} not found.")
-            return
+            found = True
+            break
+
+    if not found:
+        print(f"Task with ID {task_id} not found.")
 
 def mark_done(task_id):
     tasks = load_tasks()
+    found = False
+
     for task in tasks:
         if task["id"] == task_id:
             task["status"] = "done"
             save_tasks(tasks)
             print(f"Task {task_id} marked as done!")
-        else:
-            print(f"Task with ID {task_id} not found.")
-            return
+            found = True
+            break
+
+    if not found:
+        print(f"Task with ID {task_id} not found.")
 
 def list_tasks(status=None):
-    if status == "todo" or status == "in-progress" or status == "done":
+    tasks = load_tasks()
+    valid_status = ["to-do", "in-progress", "done"]
+
+    if status is not None and status not in valid_status:
+        print("Unknown status. Valid options are: to-do, in-progress, done.")
+        return
+
+    if status:
         print(f"Listing tasks with status: {status}")
     else:
         print("Listing all tasks")
-    tasks = load_tasks()
+
+    filtered_tasks = []
+
     for task in tasks:
         if status is None or task["status"] == status:
-            print(f"ID: {task['id']} | Description: {task['description']} | Status: {task['status']} | Created: {task['created']} | Updated: {task['updated']}")
-        else:
-            print(f"Unknown status: {status}. Valid options are: todo, in-progress, done.")
+            filtered_tasks.append(task)
 
+    if not filtered_tasks:
+        print("No tasks found.")
+        return
 
+    for task in filtered_tasks:
+        print(
+            f"ID: {task['id']} | "
+            f"Description: {task['description']} | "
+            f"Status: {task['status']} | "
+            f"Created: {task['created']} | "
+            f"Updated: {task['updated']}"
+        )
