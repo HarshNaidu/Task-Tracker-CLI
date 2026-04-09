@@ -169,7 +169,7 @@ task-cli <command> (use the help command to check the list of commands available
 
 ## Purpose of the Project
 
-This project is designed as a **practice exercise** to strengthen programming fundamentals including:
+This project is designed as a **practice exercise** from the [https://roadmap.sh/projects/task-tracker] website to strengthen programming fundamentals including:
 
 * CLI application development
 * Data persistence using JSON
