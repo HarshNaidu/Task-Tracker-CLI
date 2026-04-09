@@ -62,7 +62,7 @@ This project follows the following constraints:
 ### Add a Task
 
 ```bash
-task-cli add <Task Description>
+task-cli add <description>
 ```
 
 Output:
@@ -76,7 +76,7 @@ Task added successfully (ID: <id>)
 ### Update a Task
 
 ```bash
-task-cli update <id> <New Task Description>
+task-cli update <id> <new-description>
 ```
 
 ---
@@ -138,12 +138,12 @@ The file is automatically created when the first task is added.
 ## Project Structure
 
 ```
-task-cli/
+Task-Tracker-CLI/
 │
 ├── main.py
 ├── task_manager.py
 ├── storage.py
-├── tasks.json
+├── tasks.json 
 └── README.md
 ```
 
@@ -155,14 +155,14 @@ task-cli/
 
 ```bash
 git clone https://github.com/HarshNaidu/Task-Tracker-CLI.git
-cd task-cli
+cd Task-Tracker-CLI
 ```
 
 ### 2. Run the CLI
 
 ```bash
 python main.py
-task-cli help 
+task-cli <command> (use the help command to check the list of commands available) 
 ```
 
 ---
