@@ -1,4 +1,4 @@
-from storage import load_tasks, save_tasks
+from data.storage import load_tasks, save_tasks
 
 def generate_task_id(tasks):
     if not tasks:
@@ -7,6 +7,7 @@ def generate_task_id(tasks):
         ids = [task["id"] for task in tasks]
         return max(ids) + 1
 
+
 def add_task(description, timestamp):
     tasks = load_tasks()
     new_task = {
@@ -14,11 +15,12 @@ def add_task(description, timestamp):
         "description": description,
         "status": "to-do",
         "created": timestamp,
-        "updated": timestamp
+        "updated": timestamp,
     }
     tasks.append(new_task)
     save_tasks(tasks)
     print(f"Task added successfully! (ID: {new_task['id']})")
+
 
 def update_task(task_id, new_description, timestamp):
     tasks = load_tasks()
@@ -27,10 +29,12 @@ def update_task(task_id, new_description, timestamp):
             task["description"] = new_description
             task["updated"] = timestamp
             save_tasks(tasks)
-        else:
-            print(f"Task with ID {task_id} not found.")
-            return
+            break
+    else:
+        print(f"Task with ID {task_id} not found.")
+        return
     print(f"Task {task_id} updated successfully!")
+
 
 def delete_task(task_id):
     tasks = load_tasks()
@@ -48,6 +52,7 @@ def delete_task(task_id):
     else:
         print(f"Task with ID {task_id} not found.")
 
+
 def mark_in_progress(task_id):
     tasks = load_tasks()
     found = False
@@ -63,6 +68,7 @@ def mark_in_progress(task_id):
     if not found:
         print(f"Task with ID {task_id} not found.")
 
+
 def mark_done(task_id):
     tasks = load_tasks()
     found = False
@@ -77,6 +83,7 @@ def mark_done(task_id):
 
     if not found:
         print(f"Task with ID {task_id} not found.")
+
 
 def list_tasks(status=None):
     tasks = load_tasks()

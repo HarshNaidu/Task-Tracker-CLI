@@ -1,6 +1,15 @@
 from datetime import datetime
 import sys
-from task_manager import add_task, update_task, delete_task, mark_in_progress, mark_done, list_tasks
+
+from cli.task_manager import (
+                    add_task, 
+                    update_task, 
+                    delete_task, 
+                    mark_in_progress, 
+                    mark_done, 
+                    list_tasks
+                )
+
 cmd = input("Welcome to Task Tracker! Please start with 'task-cli help' for a list of commands.\n")
 sys.argv = cmd.split()
 
@@ -63,9 +72,9 @@ else:
         mark_done(task_id)
 
     elif command == "list":
-            if len(sys.argv) == 2:
-                list_tasks()
-            else:
-                list_tasks(sys.argv[2])
+        if len(sys.argv) == 2:
+            list_tasks()
+        else:
+            list_tasks(sys.argv[2])
     else:
         print(f"Unknown command: {sys.argv[1]}. Please start with 'task-cli help' for a list of commands.")
