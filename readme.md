@@ -153,14 +153,16 @@ task-cli
 
 ## Purpose of the Project
 
-This project is based on the
-[Task Tracker Project](https://roadmap.sh/projects/task-tracker)
-and is intended to strengthen:
+This project was developed to practice building a complete command-line tool from scratch, with an emphasis on structure, usability, and real-world execution.It focuses on:
 
-* CLI application development
-* Data persistence using JSON
-* Handling user input
-* Writing modular, maintainable code
+* Structuring an application into clearly defined layers (CLI interface, core logic, and data handling)
+* Designing an interactive command system for managing tasks efficiently
+* Persisting application state using JSON-based storage
+* Converting a Python script into a reusable, installable CLI tool
+* Maintaining consistency in code organization and naming conventions
+* Ensuring predictable behavior through basic validation and error handling
+
+Beyond functionality, the project emphasizes turning simple logic into a usable tool, reinforcing the importance of clean architecture, scalability, and developer experience.
 
 ---
 
