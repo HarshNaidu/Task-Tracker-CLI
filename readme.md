@@ -22,7 +22,7 @@ This project demonstrates core programming concepts such as:
 * List all tasks
 * Filter tasks by status:
 
-  * `todo`
+  * `to-do`
   * `in-progress`
   * `done`
 
@@ -32,15 +32,15 @@ This project demonstrates core programming concepts such as:
 
 Each task stored in the system contains the following properties:
 
-| Property        | Description                                    |
-| --------------- | ---------------------------------------------- |
-| **id**          | Unique identifier for each task                |
-| **description** | Short description of the task                  |
-| **status**      | Current status (`todo`, `in-progress`, `done`) |
-| **createdAt**   | Timestamp when the task was created            |
-| **updatedAt**   | Timestamp when the task was last modified      |
+| Property        | Description                                     |
+| --------------- | ----------------------------------------------- |
+| **id**          | Unique identifier for each task                 |
+| **description** | Short description of the task                   |
+| **status**      | Current status (`to-do`, `in-progress`, `done`) |
+| **created**     | Timestamp when the task was created             |
+| **updated**     | Timestamp when the task was last modified       |
 
-Tasks are stored in a **JSON file** in the current directory.
+Tasks are stored in a **JSON file** managed internally by the application.
 
 ---
 
@@ -49,86 +49,57 @@ Tasks are stored in a **JSON file** in the current directory.
 This project follows the following constraints:
 
 * Runs entirely from the **command line**
-* Uses **positional arguments** for commands
+* Uses **positional arguments / interactive commands**
 * Stores tasks in a **JSON file**
 * Automatically creates the JSON file if it does not exist
-* Uses only **native language modules**
+* Uses only **native Python modules**
 * No external libraries or frameworks
 
 ---
 
 ## CLI Usage
 
-### Add a Task
+### Start the CLI
 
 ```bash
-task-cli add <description>
-```
-
-Output:
-
-```bash
-Task added successfully (ID: <id>)
+task-cli
 ```
 
 ---
 
-### Update a Task
+### Available Commands
 
 ```bash
-task-cli update <id> <new-description>
+add <description>
+update <id> <new-description>
+delete <id>
+mark-in-progress <id>
+mark-done <id>
+list
+list <status>
+exit
 ```
 
 ---
 
-### Delete a Task
+### Example
 
 ```bash
-task-cli delete <id>
-```
-
----
-
-### Mark Task Status
-
-Mark a task as **in progress**:
-
-```bash
-task-cli mark-in-progress <id>
-```
-
-Mark a task as **done**:
-
-```bash
-task-cli mark-done <id>
-```
-
----
-
-### List Tasks
-
-List all tasks:
-
-```bash
-task-cli list
-```
-
-List tasks by status:
-
-```bash
-task-cli list done
-task-cli list todo
-task-cli list in-progress
+>> add Gym
+>> list
+>> mark-done 1
+>> delete 1
+>> exit
 ```
 
 ---
 
 ## Storage
 
-All tasks are stored in a local JSON file:
+All tasks are stored in a local JSON file (not tracked in version control):
 
 ```
-tasks.json
+data/tasks.json
 ```
 
 The file is automatically created when the first task is added.
@@ -140,11 +111,15 @@ The file is automatically created when the first task is added.
 ```
 Task-Tracker-CLI/
 │
-├── main.py
-├── task_manager.py
-├── storage.py
-├── tasks.json 
-└── README.md
+├── cli/
+│   └── task_manager.py
+├── core/
+│   └── main.py
+├── data/
+│   └── storage.py
+│
+├── setup.py
+├── README.md
 ```
 
 ---
@@ -158,23 +133,34 @@ git clone https://github.com/HarshNaidu/Task-Tracker-CLI.git
 cd Task-Tracker-CLI
 ```
 
-### 2. Run the CLI
+---
+
+### 2. Install the CLI
 
 ```bash
-python main.py
-task-cli <command> (use the help command to check the list of commands available) 
+pip install -e .
+```
+
+---
+
+### 3. Run the Application
+
+```bash
+task-cli
 ```
 
 ---
 
 ## Purpose of the Project
 
-This project is designed as a **practice exercise** from the [https://roadmap.sh/projects/task-tracker] website to strengthen programming fundamentals including:
+This project is based on the
+[Task Tracker Project](https://roadmap.sh/projects/task-tracker)
+and is intended to strengthen:
 
 * CLI application development
 * Data persistence using JSON
 * Handling user input
-* Writing modular and maintainable code
+* Writing modular, maintainable code
 
 ---
 
@@ -186,7 +172,7 @@ Possible extensions include:
 * Due dates
 * SQLite database storage
 * Colored CLI output
-* Packaging as an installable Python CLI tool
+* Packaging and publishing as a pip-installable tool
 
 ---
 
